@@ -3,7 +3,13 @@ package libs;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
+import java.util.function.Function;
 
 public class ActionsWithElements {
 
@@ -33,6 +39,19 @@ public class ActionsWithElements {
             ex.printStackTrace();
             logger.error("Error has happened during button clicking");
         }
+    }
+
+    public boolean clickLink(By element, String resultUrl){
+        try{
+            driver.findElement(element).click();
+            if(driver.getCurrentUrl().equals(resultUrl)){
+                return true;
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+            logger.info("Error happened during clicking on link");
+        }
+        return false;
     }
 
     public boolean isElementDisplayed(By element){
@@ -76,4 +95,18 @@ public class ActionsWithElements {
             logger.error("Error happened during dropdown element selection");
         }
     }
+
+    public void waitForInvisibility(WebDriver driver, By locator){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        try{
+           wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public int findElementsCount(WebDriver driver, By locator){
+       return driver.findElements(locator).size();
+    }
+
 }

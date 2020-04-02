@@ -1,27 +1,23 @@
 package pages;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import libs.ActionsWithElements;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginPage {
     private WebDriver driver;
     private ActionsWithElements actionsWithElements;
-    private static Logger logger = Logger.getLogger(LoginPage.class);
+    private Logger logger = Logger.getLogger(LoginPage.class);
     By inputLoginName = By.name("_username");
     By inputPasswordName = By.name("_password");
     By inputButtonXpath = By.xpath("//button[@type='submit']");
+    By authorizationHeader = By.xpath("//p[@class='login-box-msg']");
     String url = "http://v3.test.itpmgroup.com/login";
-    String title = "Account of spare:Авторизация";
-
-    public static WebDriver driverInit(){
-        WebDriverManager.chromedriver().setup();
-        return new ChromeDriver();
-    }
+    String titleUnlogged = "Account of spare:Авторизация";
+    String titleLogged = "Учет запчастей";
+    String emptyString = "";
 
     public void tearDown(){
         driver.close();
@@ -35,7 +31,8 @@ public class LoginPage {
     public void openUrl(){
         try{
             driver.get(url);
-            Assert.assertEquals(driver.getTitle(), title);
+            Assert.assertEquals(driver.getTitle(), titleUnlogged);
+            Assert.assertTrue(actionsWithElements.isElementDisplayed(authorizationHeader));
             logger.info("Page is opened");
         }catch (Exception ex){
             ex.printStackTrace();
@@ -55,11 +52,26 @@ public class LoginPage {
         driver.findElement(inputButtonXpath).click();
     }
 
-    public void loginToPage(String login, String password){
-        openUrl();
+    public void checkUserIsntLogged(){
+        Assert.assertEquals(driver.findElement(inputPasswordName).getText(),emptyString);
+        Assert.assertTrue(actionsWithElements.isElementDisplayed(authorizationHeader));
+    }
+    public void checkUserIsLogged(){
+        actionsWithElements.waitForInvisibility(driver,authorizationHeader);
+        Assert.assertEquals(driver.getTitle(),titleLogged);
+    }
+
+    public void loginToPageSuccessfulResult(String login, String password) {
         inputLogin(login);
         inputPassword(password);
         clickSubmit();
-        tearDown();
+        checkUserIsLogged();
+    }
+
+    public void loginToPageFalseResult(String login, String password){
+        inputLogin(login);
+        inputPassword(password);
+        clickSubmit();
+        checkUserIsntLogged();
     }
 }
