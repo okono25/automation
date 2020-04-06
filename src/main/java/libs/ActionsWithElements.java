@@ -8,8 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
-import java.util.function.Function;
 
 public class ActionsWithElements {
 
@@ -20,10 +18,10 @@ public class ActionsWithElements {
         this.driver = driver;
     }
 
-    public void inputTextToField(By element, String text){
+    public void inputTextToField(WebElement element, String text){
         try {
-            driver.findElement(element).clear();
-            driver.findElement(element).sendKeys(text);
+            element.clear();
+            element.sendKeys(text);
             logger.info("Text was inputted successfully");
         }catch (Exception ex){
             ex.printStackTrace();
@@ -31,9 +29,9 @@ public class ActionsWithElements {
         }
     }
 
-    public void clickButton(By element){
+    public void clickButton(WebElement element){
         try {
-            driver.findElement(element).click();
+            element.click();
             logger.info("Button was clicked ");
         }catch (Exception ex) {
             ex.printStackTrace();
@@ -41,9 +39,9 @@ public class ActionsWithElements {
         }
     }
 
-    public boolean clickLink(By element, String resultUrl){
+    public boolean clickLink(WebElement element, String resultUrl){
         try{
-            driver.findElement(element).click();
+            element.click();
             if(driver.getCurrentUrl().equals(resultUrl)){
                 return true;
             }
@@ -54,9 +52,9 @@ public class ActionsWithElements {
         return false;
     }
 
-    public boolean isElementDisplayed(By element){
+    public boolean isElementDisplayed(WebElement element){
         try{
-            return driver.findElement(element).isDisplayed();
+            return element.isDisplayed();
         }catch (Exception ex){
             ex.printStackTrace();
             logger.error("Error has happened during displaying checking");
@@ -64,9 +62,9 @@ public class ActionsWithElements {
         }
     }
 
-    public boolean isElementVisible(By element){
+    public boolean isElementVisible(WebElement element){
         try{
-            return driver.findElement(element).isDisplayed();
+            return element.isDisplayed();
         }catch (Exception ex){
             ex.printStackTrace();
             logger.error("Error has happened during visibility checking");
@@ -74,10 +72,10 @@ public class ActionsWithElements {
         }
     }
 
-    public void setCheckbox(By element, boolean state){
+    public void setCheckbox(WebElement element, boolean state){
         try {
-            if (driver.findElement(element).isEnabled() != state) {
-                driver.findElement(element).click();
+            if (element.isEnabled() != state) {
+                element.click();
             }
         }catch (Exception ex){
             ex.printStackTrace();
@@ -85,9 +83,9 @@ public class ActionsWithElements {
         }
     }
 
-    public void selectElementFromDropdownByText(By element, String text){
+    public void selectElementFromDropdownByText(WebElement element, String text){
         try {
-            Select select = new Select(driver.findElement(element));
+            Select select = new Select(element);
             select.selectByVisibleText(text);
             logger.info("Dropdown item - " + text + " is selected");
         }catch (Exception ex){
@@ -108,5 +106,6 @@ public class ActionsWithElements {
     public int findElementsCount(WebDriver driver, By locator){
        return driver.findElements(locator).size();
     }
+
 
 }

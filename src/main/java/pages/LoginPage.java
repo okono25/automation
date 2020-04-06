@@ -1,43 +1,49 @@
 package pages;
 
-import libs.ActionsWithElements;
-import org.apache.log4j.Logger;
+import basicPage.BasicPage;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
 
-public class LoginPage {
-    private WebDriver driver;
-    private ActionsWithElements actionsWithElements;
-    private Logger logger = Logger.getLogger(LoginPage.class);
-    By inputLoginName = By.name("_username");
-    By inputPasswordName = By.name("_password");
-    By inputButtonXpath = By.xpath("//button[@type='submit']");
-    By authorizationHeader = By.xpath("//p[@class='login-box-msg']");
+public class LoginPage extends BasicPage{
+
+    @FindBy(name = "_username")
+            private WebElement inputLoginName;
+
+    @FindBy(name = "_password")
+            private WebElement inputPasswordName;
+
+    @FindBy(xpath = "//button[@type='submit']")
+            private WebElement inputButtonXpath;
+
+    @FindBy(xpath = "//div[@class='login-box-body']")
+            private WebElement loginBox;
+
+
     String url = "http://v3.test.itpmgroup.com/login";
     String titleUnlogged = "Account of spare:Авторизация";
-    String titleLogged = "Учет запчастей";
     String emptyString = "";
 
-    public void tearDown(){
-        driver.close();
-    }
-
     public LoginPage(WebDriver driver){
-        this.driver = driver;
-        this.actionsWithElements = new ActionsWithElements(driver);
+        super(driver);
     }
 
     public void openUrl(){
         try{
             driver.get(url);
-            Assert.assertEquals(driver.getTitle(), titleUnlogged);
-            Assert.assertTrue(actionsWithElements.isElementDisplayed(authorizationHeader));
+            checkPageIsLoaded();
             logger.info("Page is opened");
         }catch (Exception ex){
             ex.printStackTrace();
             logger.error("Error has happened during page opening");
         }
+    }
+
+    public void checkPageIsLoaded(){
+        Assert.assertTrue(actionsWithElements.isElementDisplayed(loginBox));
     }
 
     public void inputLogin(String login){
@@ -49,29 +55,26 @@ public class LoginPage {
     }
 
     public void clickSubmit(){
-        driver.findElement(inputButtonXpath).click();
+       inputButtonXpath.click();
     }
 
     public void checkUserIsntLogged(){
-        Assert.assertEquals(driver.findElement(inputPasswordName).getText(),emptyString);
-        Assert.assertTrue(actionsWithElements.isElementDisplayed(authorizationHeader));
-    }
-    public void checkUserIsLogged(){
-        actionsWithElements.waitForInvisibility(driver,authorizationHeader);
-        Assert.assertEquals(driver.getTitle(),titleLogged);
+        Assert.assertEquals(inputPasswordName.getText(),emptyString);
+        Assert.assertTrue(actionsWithElements.isElementDisplayed(loginBox));
     }
 
-    public void loginToPageSuccessfulResult(String login, String password) {
+    public boolean isLoginBoxDisplayed(){
+        return actionsWithElements.isElementDisplayed(loginBox);
+    }
+
+    public void loginToSite(String login, String password) {
         inputLogin(login);
         inputPassword(password);
         clickSubmit();
-        checkUserIsLogged();
     }
 
-    public void loginToPageFalseResult(String login, String password){
-        inputLogin(login);
-        inputPassword(password);
-        clickSubmit();
-        checkUserIsntLogged();
+    public void checkUnLoggedTitle(){
+        Assert.assertEquals(driver.getTitle(),titleUnlogged);
     }
+
 }
