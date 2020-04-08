@@ -17,7 +17,7 @@ public class ValidLoginTest extends AbstractBasicTest {
     public void validLoginWithCorrectLoginInUpperCase(){
         loginPage.openUrl();
         loginPage.loginToSite("STUDENT","909090");
-        checkExpectedResult("Avatar is present", loginPage.isLoginBoxDisplayed());
-        loginPage.checkUnLoggedTitle();
+        checkExpectedResult("Avatar is present", dashboardPage.isAvatarDisplayed());
+        dashboardPage.checkLoggedTitle();
     }
 }

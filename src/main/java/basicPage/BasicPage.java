@@ -3,6 +3,8 @@ package basicPage;
 import libs.ActionsWithElements;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.LoginPage;
 
@@ -11,6 +13,11 @@ public class BasicPage {
     protected WebDriver driver;
     protected ActionsWithElements actionsWithElements;
     protected Logger logger = Logger.getLogger(LoginPage.class);
+
+    @FindBy(xpath = "//a[@href='/']")
+    protected WebElement linkToHomePage;
+
+    protected String DashboardPageUrl = "http://v3.test.itpmgroup.com/";
 
     public BasicPage(WebDriver driver){
         this.driver = driver;

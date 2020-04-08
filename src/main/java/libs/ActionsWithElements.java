@@ -1,6 +1,7 @@
 package libs;
 
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,17 +40,14 @@ public class ActionsWithElements {
         }
     }
 
-    public boolean clickLink(WebElement element, String resultUrl){
+    public void clickLink(WebElement element){
         try{
             element.click();
-            if(driver.getCurrentUrl().equals(resultUrl)){
-                return true;
-            }
+            logger.info("Link was clicked ");
         }catch (Exception ex){
             ex.printStackTrace();
             logger.info("Error happened during clicking on link");
         }
-        return false;
     }
 
     public boolean isElementDisplayed(WebElement element){

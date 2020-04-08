@@ -17,13 +17,13 @@ public class DashboardPage extends BasicPage {
   @FindBy(xpath = "//div[@class='pull-left image']")
   private WebElement userAvatar;
 
-  @FindBy(xpath = "//a[@href='/']")
-  private WebElement linkToHomePage;
+ // @FindBy(xpath = "//a[@href='/']")
+ // private WebElement linkToHomePage;
 
   @FindAll(@FindBy(xpath = "//div[@class='box-body']//div[@class='box-body']//p"))
   private ArrayList<String> rowList;
 
-  String DashboardPageUrl = "http://v3.test.itpmgroup.com/";
+  //String DashboardPageUrl = "http://v3.test.itpmgroup.com/";
   String titleLogged = "Учет запчастей";
   int rowsCountForDashboardPage = 5;
 
@@ -32,7 +32,7 @@ public class DashboardPage extends BasicPage {
     }
 
     public void clickOnLinkToHomePage(){
-        Assert.assertTrue(actionsWithElements.clickLink(linkToHomePage,DashboardPageUrl));
+        actionsWithElements.clickLink(linkToHomePage);
     }
 
     public boolean isAvatarDisplayed(){
