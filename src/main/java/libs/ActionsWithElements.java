@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 
 public class ActionsWithElements {
 
@@ -98,6 +100,18 @@ public class ActionsWithElements {
            wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
         }catch (Exception ex){
             ex.printStackTrace();
+        }
+    }
+
+    public void printWebElementsFromTheList(List<WebElement> list){
+        try {
+            for (int i = 0; i < list.size(); i++) {
+               logger.info(list.get(i).getText());
+            }
+            logger.info("Elements were printed");
+        }catch (Exception ex){
+            ex.printStackTrace();
+            logger.error("Printing error has happened");
         }
     }
 

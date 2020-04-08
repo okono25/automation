@@ -1,20 +1,28 @@
 package pages;
 
+import basicPage.BasicPage;
 import libs.ActionsWithElements;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class ServicePage {
+public class ServicePage extends BasicPage {
 
-    private WebDriver driver;
-    private ActionsWithElements actionsWithElements;
-    private Logger logger = Logger.getLogger(LoginPage.class);
-    By serviceHeader = By.xpath("//section[@class='content-header']//h1");
-    By addWorkRecordButton = By.xpath("//section[@class='content-header']//h1");
+
+    @FindBy(xpath = "//section[@class='content-header']//h1")
+            private WebElement serviceHeader;
+
+    @FindBy(xpath = "//section[@class='content-header']//h1")
+            private WebElement addWorkRecordButton;
 
     public ServicePage(WebDriver driver){
-        this.driver = driver;
-        this.actionsWithElements = new ActionsWithElements(driver);
+       super(driver);
+    }
+
+
+    public void isServiceHeaderDisplayed(){
+         actionsWithElements.isElementDisplayed(serviceHeader);
     }
 }

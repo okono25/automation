@@ -7,6 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+
+import java.util.List;
 
 public class LoginPage extends BasicPage{
 
@@ -22,6 +25,11 @@ public class LoginPage extends BasicPage{
     @FindBy(xpath = "//div[@class='login-box-body']")
             private WebElement loginBox;
 
+    @FindBy(xpath = "//a[@class='dropdown-toggle']")
+            private WebElement dropdownLoginToggle;
+
+    @FindBy(xpath = "//a[@href='/logout']")
+            private WebElement logOutButton;
 
     String url = "http://v3.test.itpmgroup.com/login";
     String titleUnlogged = "Account of spare:Авторизация";
@@ -55,7 +63,7 @@ public class LoginPage extends BasicPage{
     }
 
     public void clickSubmit(){
-       inputButtonXpath.click();
+       actionsWithElements.clickButton(inputButtonXpath);
     }
 
     public void checkUserIsntLogged(){
@@ -75,6 +83,11 @@ public class LoginPage extends BasicPage{
 
     public void checkUnLoggedTitle(){
         Assert.assertEquals(driver.getTitle(),titleUnlogged);
+    }
+
+    public void logOut(){
+        actionsWithElements.clickButton(dropdownLoginToggle);
+        actionsWithElements.clickButton(logOutButton);
     }
 
 }

@@ -1,6 +1,7 @@
 package basicPage;
 
 import libs.ActionsWithElements;
+import libs.Utils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +17,9 @@ public class BasicPage {
 
     @FindBy(xpath = "//a[@href='/']")
     protected WebElement linkToHomePage;
+
+   // @FindBy(xpath = "//ul[@class='treeview-menu menu-open']")
+   // protected WebElement dropdownDictionaries;
 
     protected String DashboardPageUrl = "http://v3.test.itpmgroup.com/";
 

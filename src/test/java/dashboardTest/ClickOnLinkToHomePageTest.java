@@ -9,6 +9,7 @@ public class ClickOnLinkToHomePageTest extends AbstractBasicTest {
     public void clickOnLinkToHomepage(){
         loginPage.openUrl();
         loginPage.loginToSite("Student","909090");
-        checkCurrentUrl("False url is displayed",dashboardPage.getDashboardPageUrl());
+        dashboardPage.clickOnLinkToHomePage();
+        checkCurrentUrl("False page is opened", dashboardPage.getDashboardPageUrl());
     }
 }
