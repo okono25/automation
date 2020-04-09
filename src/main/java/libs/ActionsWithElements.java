@@ -115,9 +115,40 @@ public class ActionsWithElements {
         }
     }
 
-    public int findElementsCount(WebDriver driver, By locator){
-       return driver.findElements(locator).size();
+    public void clickOnElementsFromTheTreeMenu(WebElement menuHeader, List<WebElement> elementsList, String text){
+        try{
+            menuHeader.click();
+            for(int i=0; i<elementsList.size(); i++){
+                if(elementsList.get(i).getText().equals(text)){
+                    elementsList.get(i).click();
+                    logger.info("Element was found and clicked");
+                }
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+            logger.error("Element isn't clicked");
+        }
     }
 
+    public int getListSize(List<WebElement> list){
+        try {
+            return list.size();
+        }catch (Exception ex){
+            logger.error("Error happened during size returning");
+        }
+        return -1;
+    }
+
+    public boolean checklistFromTwoColumns(List<WebElement> column1, List<WebElement> column2, String column1Value, String column2Value){
+        try {
+            String lastColumn1element = column1.get(column1.size() - 1).getText();
+            String lastColumn2element = column2.get(column2.size() - 1).getText();
+            return lastColumn1element.equals(column1Value) && lastColumn2element.equals(column2Value);
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+    }
 
 }

@@ -9,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.LoginPage;
 
+import java.util.List;
+
 public class BasicPage {
 
     protected WebDriver driver;
@@ -18,8 +20,13 @@ public class BasicPage {
     @FindBy(xpath = "//a[@href='/']")
     protected WebElement linkToHomePage;
 
-   // @FindBy(xpath = "//ul[@class='treeview-menu menu-open']")
-   // protected WebElement dropdownDictionaries;
+    @FindBy(xpath = "//li[@id='dictionary']")
+    protected WebElement dictionaries;
+
+    @FindBy(xpath = "//ul[@class='treeview-menu']/li/a")
+    protected List<WebElement> dictionaryMenu;
+
+
 
     protected String DashboardPageUrl = "http://v3.test.itpmgroup.com/";
 

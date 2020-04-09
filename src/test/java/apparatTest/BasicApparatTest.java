@@ -10,6 +10,6 @@ public class BasicApparatTest extends AbstractBasicTest {
         loginPage.openUrl();
         loginPage.loginToSite("Student","909090");
         apparatPage.openApparatPage();
-        apparatPage.isApparatHeaderDisplayed();
+        checkExpectedResult("Wrong header is displayed",apparatPage.isApparatHeaderDisplayed());
     }
 }

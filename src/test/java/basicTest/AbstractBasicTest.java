@@ -76,4 +76,6 @@ public class AbstractBasicTest {
         }
         Assert.assertEquals("Wrong row count", expected, dashboardPage.returnContentListCount());
     }
+
+
 }
