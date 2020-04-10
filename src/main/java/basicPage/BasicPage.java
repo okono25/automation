@@ -23,6 +23,9 @@ public class BasicPage {
     @FindBy(xpath = "//li[@id='dictionary']")
     protected WebElement dictionaries;
 
+    @FindBy(xpath = "//li[@id='deal']")
+    protected WebElement deals;
+
     @FindBy(xpath = "//ul[@class='treeview-menu']/li/a")
     protected List<WebElement> dictionaryMenu;
 

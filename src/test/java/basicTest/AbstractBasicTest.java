@@ -9,10 +9,7 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.ApparatPage;
-import pages.DashboardPage;
-import pages.LoginPage;
-import pages.ServicePage;
+import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +20,7 @@ public class AbstractBasicTest {
     protected DashboardPage dashboardPage;
     protected ServicePage servicePage;
     protected ApparatPage apparatPage;
+    protected DealPage dealPage;
     protected Utils utils;
     protected String pathToScreenShot;
 
@@ -42,6 +40,7 @@ public class AbstractBasicTest {
         dashboardPage = new DashboardPage(driver);
         servicePage = new ServicePage(driver);
         apparatPage = new ApparatPage(driver);
+        dealPage = new DealPage(driver);
         utils = new Utils();
     }
 
