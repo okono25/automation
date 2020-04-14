@@ -1,8 +1,6 @@
 package libs;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,7 +8,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-
 
 public class ActionsWithElements {
 
@@ -94,12 +91,13 @@ public class ActionsWithElements {
         }
     }
 
-    public void waitForInvisibility(WebDriver driver, By locator){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+    public void waitForListVisibility(List<WebElement> list, int time){
+        WebDriverWait wait = new WebDriverWait(driver, time);
         try{
-           wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+           wait.until(ExpectedConditions.visibilityOfAllElements(list));
         }catch (Exception ex){
             ex.printStackTrace();
+            logger.error("Error happened during waiting");
         }
     }
 
@@ -139,7 +137,7 @@ public class ActionsWithElements {
         return -1;
     }
 
-    public boolean checklistFromTwoColumns(List<WebElement> column1, List<WebElement> column2, String column1Value, String column2Value){
+    public boolean getMatchingFromTwoColumns(List<WebElement> column1, List<WebElement> column2, String column1Value, String column2Value){
         try {
             String lastColumn1element = column1.get(column1.size() - 1).getText();
             String lastColumn2element = column2.get(column2.size() - 1).getText();
@@ -147,6 +145,7 @@ public class ActionsWithElements {
         }
         catch (Exception ex){
             ex.printStackTrace();
+            logger.error("Error has happened during matching");
             return false;
         }
     }

@@ -25,12 +25,6 @@ public class LoginPage extends BasicPage{
     @FindBy(xpath = "//div[@class='login-box-body']")
             private WebElement loginBox;
 
-    @FindBy(xpath = "//a[@class='dropdown-toggle']")
-            private WebElement dropdownLoginToggle;
-
-    @FindBy(xpath = "//a[@href='/logout']")
-            private WebElement logOutButton;
-
     String url = "http://v3.test.itpmgroup.com/login";
     String titleUnlogged = "Account of spare:Авторизация";
     String emptyString = "";
@@ -83,11 +77,6 @@ public class LoginPage extends BasicPage{
 
     public void checkUnLoggedTitle(){
         Assert.assertEquals(driver.getTitle(),titleUnlogged);
-    }
-
-    public void logOut(){
-        actionsWithElements.clickButton(dropdownLoginToggle);
-        actionsWithElements.clickButton(logOutButton);
     }
 
 }

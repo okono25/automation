@@ -9,7 +9,7 @@ public class ValidLogOutTest extends AbstractBasicTest {
     public void validLogOutTest(){
         loginPage.openUrl();
         loginPage.loginToSite("Student","909090");
-        loginPage.logOut();
+        dashboardPage.logOut();
         checkExpectedResult("LoginBox isn't present", loginPage.isLoginBoxDisplayed());
         loginPage.checkUnLoggedTitle();
     }

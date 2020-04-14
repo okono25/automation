@@ -11,6 +11,6 @@ public class BasicDashboardTest extends AbstractBasicTest {
         loginPage.openUrl();
         loginPage.loginToSite("Student","909090");
         checkExpectedResult("False header is displayed",dashboardPage.isDashboardHeaderDisplayed());
-        checkRowsCount(5);
+        checkRowsOnListCount(5,dashboardPage.returnContentListCount());
     }
 }

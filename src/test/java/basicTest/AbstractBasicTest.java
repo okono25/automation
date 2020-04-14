@@ -21,9 +21,9 @@ public class AbstractBasicTest {
     protected ServicePage servicePage;
     protected ApparatPage apparatPage;
     protected DealPage dealPage;
+    protected DictionaryPage dictionaryPage;
     protected Utils utils;
     protected String pathToScreenShot;
-
 
     @Rule
     public TestName testName = new TestName();
@@ -41,6 +41,7 @@ public class AbstractBasicTest {
         servicePage = new ServicePage(driver);
         apparatPage = new ApparatPage(driver);
         dealPage = new DealPage(driver);
+        dictionaryPage = new DictionaryPage(driver);
         utils = new Utils();
     }
 
@@ -68,13 +69,11 @@ public class AbstractBasicTest {
         Assert.assertEquals(message, driver.getCurrentUrl(), actualResult);
     }
 
-    public void checkRowsCount(int expected){
-        if(expected!= dashboardPage.returnContentListCount()){
+    public void checkRowsOnListCount(int expected, int rowCount){
+        if(expected!= rowCount){
             utils.screenShot(pathToScreenShot,driver);
-            dashboardPage.printListCount();
         }
-        Assert.assertEquals("Wrong row count", expected, dashboardPage.returnContentListCount());
+        Assert.assertEquals("Wrong row count", expected, rowCount);
     }
-
 
 }

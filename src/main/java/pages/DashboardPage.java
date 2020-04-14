@@ -4,10 +4,7 @@ import basicPage.BasicPage;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardPage extends BasicPage {
@@ -21,9 +18,7 @@ public class DashboardPage extends BasicPage {
   @FindBy(xpath = "//div[@class='content-wrapper']//p")
   private List<WebElement> contentList;
 
-  //String DashboardPageUrl = "http://v3.test.itpmgroup.com/";
   String titleLogged = "Учет запчастей";
-  int rowsCountForDashboardPage = 5;
 
     public DashboardPage(WebDriver driver){
         super(driver);
@@ -49,13 +44,12 @@ public class DashboardPage extends BasicPage {
       return contentList.size();
     }
 
-    public void printListCount(){
-      if(contentList.size() > 0){
-        actionsWithElements.printWebElementsFromTheList(contentList);
-      }
-    }
+  public void logOut(){
+    actionsWithElements.clickButton(dropdownLoginToggle);
+    actionsWithElements.clickButton(logOutButton);
+  }
 
-    public String getDashboardPageUrl(){
+  public String getDashboardPageUrl(){
       return DashboardPageUrl;
     }
 }

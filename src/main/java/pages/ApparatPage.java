@@ -4,8 +4,6 @@ import basicPage.BasicPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.EnumSet;
 import java.util.List;
 
 public class ApparatPage extends BasicPage {
@@ -31,6 +29,8 @@ public class ApparatPage extends BasicPage {
     @FindBy(xpath = "//tbody//tr/td[2]")
     private List<WebElement> commentsColumn;
 
+    @FindBy(xpath = "//a[@href = \"/dictionary\"]")
+    private  WebElement dictionaryLink;
 
     public ApparatPage(WebDriver driver) {
         super(driver);
@@ -60,6 +60,14 @@ public class ApparatPage extends BasicPage {
         actionsWithElements.clickButton(addApparatButton);
     }
 
+    public void clickOnLinkToHomePage(){
+        actionsWithElements.clickLink(linkToHomePage);
+    }
+
+    public void clickOnDictionaryLink(){
+        actionsWithElements.clickLink(dictionaryLink);
+    }
+
     public void createDictionary(String number, String comment){
         clickAddDictionaryButon();
         inputApparatNumber(number);
@@ -68,6 +76,6 @@ public class ApparatPage extends BasicPage {
     }
 
     public boolean isNewApparatDisplayed(String number, String column){
-        return actionsWithElements.checklistFromTwoColumns(numbersColumn, commentsColumn, number, column);
+        return actionsWithElements.getMatchingFromTwoColumns(numbersColumn, commentsColumn, number, column);
     }
 }

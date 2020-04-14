@@ -6,13 +6,13 @@ import loginTest.ValidLoginTestWithExcel;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
-        InvalidLoginTest.class,
-        ValidLoginTest.class,
-        ValidLoginTestWithExcel.class
-})
+    @RunWith(Suite.class)
+    @Suite.SuiteClasses({
+            InvalidLoginTest.class,
+            ValidLoginTest.class,
+            ValidLoginTestWithExcel.class
+    })
 
-public class LoginSuit {
+    public class LoginSuit {
 
 }
