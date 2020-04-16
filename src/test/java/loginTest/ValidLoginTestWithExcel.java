@@ -4,8 +4,6 @@ import basicTest.AbstractBasicTest;
 import libs.ConfigClass;
 import libs.ExcelDriver;
 import org.junit.Test;
-
-import javax.imageio.IIOException;
 import java.io.IOException;
 import java.util.Map;
 

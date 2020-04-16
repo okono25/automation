@@ -13,7 +13,6 @@ import java.util.Map;
 
 public class ExcelDriver {
 
-
 	public static Map getMultipleData(String dataFileName, String sheetName, int columnNumber) throws IOException {
 		Map<String, String> testData = new HashMap<>();
 		// Create stream for reading from file
@@ -36,7 +35,6 @@ public class ExcelDriver {
 		input.close();
 		return testData;
 	}
-
 
     /*
       * Static method that retrieves testing data from Excel table and returns it
@@ -66,8 +64,6 @@ public class ExcelDriver {
         input.close();
         return testData;
     }
-
-	
 
 	/*
 	 * Static method that retrieves testing data from Excel table and returns it

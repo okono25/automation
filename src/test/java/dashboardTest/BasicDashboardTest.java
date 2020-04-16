@@ -10,7 +10,7 @@ public class BasicDashboardTest extends AbstractBasicTest {
     public void dashboardBaseOpening(){
         loginPage.openUrl();
         loginPage.loginToSite("Student","909090");
-        checkExpectedResult("False header is displayed",dashboardPage.isDashboardHeaderDisplayed());
+        checkExpectedResult("Dashboard header is displayed",dashboardPage.isDashboardHeaderDisplayed());
         checkRowsOnListCount(5,dashboardPage.returnContentListCount());
     }
 }

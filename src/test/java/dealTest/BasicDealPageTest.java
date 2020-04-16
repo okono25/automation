@@ -11,6 +11,6 @@ public class BasicDealPageTest extends AbstractBasicTest {
         loginPage.openUrl();
         loginPage.loginToSite("Student", "909090");
         dealPage.openDealPage();
-        checkExpectedResult("False header is displayed",dealPage.isDealHeaderDisplayed());
+        checkExpectedResult("Deal header isn't displayed",dealPage.isDealHeaderDisplayed());
     }
 }

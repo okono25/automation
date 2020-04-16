@@ -18,10 +18,10 @@ public class AbstractBasicTest {
     WebDriver driver;
     protected LoginPage loginPage;
     protected DashboardPage dashboardPage;
-    protected ServicePage servicePage;
     protected ApparatPage apparatPage;
     protected DealPage dealPage;
     protected DictionaryPage dictionaryPage;
+    protected ProviderPage providerPage;
     protected Utils utils;
     protected String pathToScreenShot;
 
@@ -38,10 +38,10 @@ public class AbstractBasicTest {
         driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);
-        servicePage = new ServicePage(driver);
         apparatPage = new ApparatPage(driver);
         dealPage = new DealPage(driver);
         dictionaryPage = new DictionaryPage(driver);
+        providerPage = new ProviderPage(driver);
         utils = new Utils();
     }
 

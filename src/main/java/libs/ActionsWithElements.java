@@ -71,8 +71,9 @@ public class ActionsWithElements {
 
     public void setCheckbox(WebElement element, boolean state){
         try {
-            if (element.isEnabled() != state) {
+            if (element.isSelected() != state) {
                 element.click();
+                logger.info("Checkbox state was changed");
             }
         }catch (Exception ex){
             ex.printStackTrace();
@@ -101,6 +102,16 @@ public class ActionsWithElements {
         }
     }
 
+    public void waitForElementVisibility(WebElement element, int time){
+        WebDriverWait wait = new WebDriverWait(driver, time);
+        try{
+            wait.until(ExpectedConditions.visibilityOf(element));
+        }catch (Exception ex){
+            ex.printStackTrace();
+            logger.error("Error happened during waiting");
+        }
+    }
+
     public void printWebElementsFromTheList(List<WebElement> list){
         try {
             for (int i = 0; i < list.size(); i++) {
@@ -116,8 +127,8 @@ public class ActionsWithElements {
     public void clickOnElementsFromTheTreeMenu(WebElement menuHeader, List<WebElement> elementsList, String text){
         try{
             menuHeader.click();
-            for(int i=0; i<elementsList.size(); i++){
-                if(elementsList.get(i).getText().equals(text)){
+            for(int i = 0; i < elementsList.size(); i++){
+                if(elementsList.get(i).getText().equalsIgnoreCase(text)){
                     elementsList.get(i).click();
                     logger.info("Element was found and clicked");
                 }
@@ -149,5 +160,4 @@ public class ActionsWithElements {
             return false;
         }
     }
-
 }

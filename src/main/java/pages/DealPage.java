@@ -11,7 +11,7 @@ import java.util.List;
 public class DealPage extends BasicPage {
 
     @FindBy(xpath = "//section[@class='content-header']//h1")
-    private WebElement dealHeader;
+    private WebElement dealPageHeader;
 
     @FindBy(xpath = "//a[@href='http://v3.test.itpmgroup.com/deal/edit']")
     private WebElement addDealButton;
@@ -51,7 +51,8 @@ public class DealPage extends BasicPage {
     }
 
     public boolean isDealHeaderDisplayed(){
-        return actionsWithElements.isElementDisplayed(dealHeader);
+        String dealHeader = "Сделки";
+        return (actionsWithElements.isElementDisplayed(dealPageHeader) && dealPageHeader.getText().contains(dealHeader));
     }
 
     public void openDealPage(){
@@ -118,5 +119,4 @@ public class DealPage extends BasicPage {
             return false;
         }
     }
-
 }

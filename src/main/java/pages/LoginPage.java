@@ -78,5 +78,4 @@ public class LoginPage extends BasicPage{
     public void checkUnLoggedTitle(){
         Assert.assertEquals(driver.getTitle(),titleUnlogged);
     }
-
 }

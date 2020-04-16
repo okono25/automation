@@ -25,7 +25,7 @@ public class BasicPage {
     @FindBy(xpath = "//li[@id='deal']")
     protected WebElement deals;
 
-    @FindBy(xpath = "//ul[@class='treeview-menu']/li/a")
+    @FindBy(xpath = "//ul[@class='treeview-menu menu-open']/li/a")
     protected List<WebElement> dictionaryMenu;
 
     @FindBy(xpath = "//a[@class='dropdown-toggle']")

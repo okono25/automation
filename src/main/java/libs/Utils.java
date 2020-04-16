@@ -47,7 +47,6 @@ public class Utils {
         }
     }
 
-
     /**
      * Method returned SystemDateAndTime In Format yyyy-MM-dd_HH-mm-ss
      * @return
@@ -68,5 +67,4 @@ public class Utils {
         System.out.println(dateFormated);
         return dateFormated;
     }
-
 }

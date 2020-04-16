@@ -36,12 +36,13 @@ public class ApparatPage extends BasicPage {
         super(driver);
     }
 
-    public void openApparatPage(){
+    public void openApparatPage() {
         actionsWithElements.clickOnElementsFromTheTreeMenu(dictionaries,dictionaryMenu,"Аппарат");
     }
 
     public boolean isApparatHeaderDisplayed(){
-        return actionsWithElements.isElementDisplayed(apparatPageHeader);
+        String apparatHeader = "Аппарат";
+        return (actionsWithElements.isElementDisplayed(apparatPageHeader) && apparatPageHeader.getText().contains(apparatHeader));
     }
 
     public void inputApparatNumber(String number){
